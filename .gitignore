@@ -3,6 +3,11 @@
 *.ex5
 *.ex4
 
+/Logs/
+/Profiles/
+/Files/
+/Presets/
+
 Experts/Advisors/ExpertMACD.ex5
 Experts/Advisors/ExpertMACD.mq5
 Experts/Advisors/ExpertMAMA.ex5
@@ -340,37 +345,6 @@ Indicators/Examples/ZigZag.ex5
 Indicators/Examples/ZigZag.mq5
 Indicators/Examples/ZigzagColor.ex5
 Indicators/Examples/ZigzagColor.mq5
-Logs/20171120.log
-Profiles/Charts/British Pound/chart01.chr
-Profiles/Charts/British Pound/chart02.chr
-Profiles/Charts/British Pound/chart03.chr
-Profiles/Charts/British Pound/chart04.chr
-Profiles/Charts/British Pound/order.wnd
-Profiles/Charts/Default/chart01.chr
-Profiles/Charts/Default/order.wnd
-Profiles/Charts/Euro/chart01.chr
-Profiles/Charts/Euro/chart02.chr
-Profiles/Charts/Euro/chart03.chr
-Profiles/Charts/Euro/chart04.chr
-Profiles/Charts/Euro/order.wnd
-Profiles/Charts/Market Overview/chart01.chr
-Profiles/Charts/Market Overview/chart02.chr
-Profiles/Charts/Market Overview/chart03.chr
-Profiles/Charts/Market Overview/chart04.chr
-Profiles/Charts/Market Overview/order.wnd
-Profiles/Charts/my/chart01.chr
-Profiles/Charts/my/order.wnd
-Profiles/SymbolSets/forex.all.set
-Profiles/SymbolSets/forex.crosses.set
-Profiles/SymbolSets/forex.major.set
-Profiles/Templates/ADX.tpl
-Profiles/Templates/BollingerBands.tpl
-Profiles/Templates/Momentum.tpl
-Profiles/Templates/ReportHistory.htm
-Profiles/Templates/ReportTester.htm
-Profiles/Templates/ReportTrade.htm
-Profiles/Templates/mydef.tpl
-Profiles/Tester/Moving Average.set
 Scripts/Examples/AccountInfo/AccountInfoSample.ex5
 Scripts/Examples/AccountInfo/AccountInfoSample.mq5
 Scripts/Examples/AccountInfo/AccountInfoSampleInit.mqh
