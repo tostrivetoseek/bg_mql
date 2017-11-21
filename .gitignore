@@ -1,7 +1,7 @@
 .idea
 
-*.mq5
-*.mq4
+*.ex5
+*.ex4
 
 Experts/Advisors/ExpertMACD.ex5
 Experts/Advisors/ExpertMACD.mq5
