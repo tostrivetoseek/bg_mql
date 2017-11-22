@@ -44,7 +44,9 @@ protected:
 public:
 
     Bot(DealFactory *dealFactory, Condition *condition, Money *money, const string name = NULL):
-        dealFactory(dealFactory), condition(condition), money(money),
+        dealFactory(dealFactory),
+        condition(condition),
+        money(money),
         name(name)
     {}
 
@@ -55,7 +57,10 @@ public:
             return;
         }
 
-        deal.open();
+        int id = deal.open();
+        if (id) {
+            this.condition.setLastDealTime(TimeCurrent());
+        }
 
         delete deal;
     }

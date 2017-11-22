@@ -10,6 +10,8 @@ Bot *bot;
 
 int OnInit()
 {
+    MathSrand(GetTickCount());
+
     bot = new SimpleBot("1");
 
     return INIT_SUCCEEDED;
@@ -23,6 +25,8 @@ void OnTick()
 void OnDeinit(const int reason)
 {
     delete bot;
+
+    ObjectsDeleteAll(0);
 
     Print("Deinit reason #", reason);
 }
