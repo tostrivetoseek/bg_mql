@@ -1,5 +1,5 @@
-#ifndef BOTS_SIMPLEBOT_MQH
-#define BOTS_SIMPLEBOT_MQH
+#ifndef BOTS_BOT_SIMPLE_MQH
+#define BOTS_BOT_SIMPLE_MQH
 
 //==================================================
 
@@ -9,16 +9,16 @@
 
 //==================================================
 
-class SimpleBot: public Bot
+class BotSimple: public Bot
 {
 
 public:
 
-    SimpleBot(const string name = NULL):
-        Bot(new DealArrowFactory(), new ConditionRand(), new Money(), name)
+    BotSimple(const string name = NULL):
+        Bot(new DealArrowFactory(), new ConditionRand(), new Money(), "BotSimple " + name)
     {}
 
-    ~SimpleBot()
+    ~BotSimple()
     {
         delete this.money;
         delete this.condition;

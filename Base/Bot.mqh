@@ -35,7 +35,7 @@ protected:
         deal.arrowColor = dir > 0 ? clrBlue : clrRed;
 
         if (this.name != NULL) {
-            deal.comment = "#" + this.name + " " + IntegerToString(deal.command) + " " + DoubleToString(deal.volume, 4);
+            deal.comment = this.name + " " + IntegerToString(deal.command) + " " + DoubleToString(deal.volume, 4);
         }
 
         return deal;

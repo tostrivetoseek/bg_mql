@@ -40,7 +40,7 @@ public:
         this.delayUntil = this.getLastBarTime();
 
         datetime times[2];
-        if ( CopyTime(NULL, 0, 0, 2, times) ) {
+        if ( CopyTime(NULL, 0, 0, 2, times) > 0 ) {
             this.periodSeconds = MathAbs((int)times[1] - (int)times[0]);
         } else {
             this.periodSeconds = 60;

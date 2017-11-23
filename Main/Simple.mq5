@@ -2,7 +2,7 @@
 
 //=========================================================
 
-#include "../Bots/SimpleBot.mqh"
+#include "../Bots/BotSimple.mqh"
 
 //=========================================================
 
@@ -12,7 +12,7 @@ int OnInit()
 {
     MathSrand(GetTickCount());
 
-    bot = new SimpleBot("1");
+    bot = new BotSimple("#1");
 
     return INIT_SUCCEEDED;
 }
