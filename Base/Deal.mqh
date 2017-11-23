@@ -66,7 +66,9 @@ public:
             return 0;
         }
 
-        Print(this.comment + " " + IntegerToString(this.command) + " " + DoubleToString(this.volume));
+        if (this.comment != NULL) {
+            Print(this.comment);
+        }
 
         return 1;
     }

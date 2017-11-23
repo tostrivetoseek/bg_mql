@@ -35,7 +35,7 @@ protected:
         deal.arrowColor = dir > 0 ? clrBlue : clrRed;
 
         if (this.name != NULL) {
-            deal.comment = "#" + this.name;
+            deal.comment = "#" + this.name + " " + IntegerToString(deal.command) + " " + DoubleToString(deal.volume, 4);
         }
 
         return deal;
@@ -59,7 +59,8 @@ public:
 
         int id = deal.open();
         if (id) {
-            this.condition.setLastDealTime(TimeCurrent());
+            //this.condition.setLastDealTime(TimeCurrent());
+            this.condition.setDelay();
         }
 
         delete deal;
