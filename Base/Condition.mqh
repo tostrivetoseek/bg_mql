@@ -61,24 +61,7 @@ public:
         this.delayUntil = this.getLastBarTime() + this.periodSeconds + MathRand()%(this.periodSeconds*this.randomDelayPeriodsCount);
     }
 
-    virtual int test()
-    {
-        if ( this.isDelay() ) {
-            return 0;
-        }
-
-        if ( this.isOpened() ) {
-            return 0;
-        }
-
-        int point = 100 - MathRand()%201;
-
-        if (point > 0) {
-            return 1;
-        }
-
-        return -1;
-    }
+    virtual int test() = 0;
 };
 
 #endif
