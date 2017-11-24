@@ -5,7 +5,7 @@
 
 #include "../Base/Bot.mqh"
 #include "../Deals/DealArrow.mqh"
-#include "../Conditions/ConditionRand.mqh"
+#include "../Conditions/ConditionStoch.mqh"
 
 //==================================================
 
@@ -15,7 +15,7 @@ class BotSimple: public Bot
 public:
 
     BotSimple(const string name = NULL):
-        Bot(new DealArrowFactory(), new ConditionRand(), new Money(), "BotSimple " + name)
+        Bot(new DealArrowFactory(), new ConditionStoch(8), new Money(), "BotSimple " + name)
     {}
 
     ~BotSimple()

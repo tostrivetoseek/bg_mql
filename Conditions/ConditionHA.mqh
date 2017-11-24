@@ -16,10 +16,14 @@ protected:
 
 public:
 
-    ConditionHA(const int randomDelayPeriodsCount = 1):
-        Condition(randomDelayPeriodsCount)
+    ConditionHA(const ENUM_TIMEFRAMES timeframe = 0)
     {
-        this.handle = iCustom(NULL, 0, "Examples\\Heiken_Ashi");
+        this.handle = iCustom(NULL, timeframe, "Examples\\Heiken_Ashi");
+    }
+
+    ~ConditionHA()
+    {
+        IndicatorRelease(this.handle);
     }
 
     virtual int test()

@@ -12,10 +12,6 @@ class ConditionRand: public Condition
 
 public:
 
-    ConditionRand(const int randomDelayPeriodsCount = 1):
-        Condition(randomDelayPeriodsCount)
-    {}
-
     virtual int test()
     {
         if ( this.isDelay() ) {

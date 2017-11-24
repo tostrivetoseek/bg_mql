@@ -7,10 +7,9 @@ class Condition
 private:
 
     int periodSeconds;
+    int randomDelayPeriodsCount;
 
 protected:
-
-    const int randomDelayPeriodsCount;
 
     datetime lastDealTime;
     datetime delayUntil;
@@ -33,8 +32,8 @@ protected:
 
 public:
 
-    Condition(const int randomDelayPeriodsCount = 1):
-        randomDelayPeriodsCount(randomDelayPeriodsCount)
+    Condition():
+        randomDelayPeriodsCount(1)
     {
         this.lastDealTime = this.getLastBarTime();
         this.delayUntil = this.getLastBarTime();
@@ -47,12 +46,17 @@ public:
         }
     }
 
-    void setLastDealTime(datetime time)
+    void setRandomDelayPeriodsCount(const int randomDelayPeriodsCount)
+    {
+        this.randomDelayPeriodsCount = randomDelayPeriodsCount;
+    }
+
+    void setLastDealTime(const datetime time)
     {
         this.lastDealTime = time;
     }
 
-    void setDelay(int seconds = NULL)
+    void setDelay(const int seconds = NULL)
     {
         if (seconds != NULL) {
             this.delayUntil = TimeCurrent() + seconds;
