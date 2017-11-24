@@ -6,9 +6,14 @@ class Money
 
 public:
 
-    virtual double volume()
+    virtual double getVolume()
     {
         return 1.0;
+    }
+
+    virtual double getBalance()
+    {
+        return 0.0;
     }
 };
 

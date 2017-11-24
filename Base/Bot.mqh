@@ -20,31 +20,7 @@ protected:
 
     const string    name;
 
-
-    virtual Deal *getDeal()
-    {
-        double volume = this.money.volume();
-        if ( volume <= 0.0 ) {
-            return NULL;
-        }
-
-        int dir = this.condition.test();
-        if ( !dir ) {
-            return NULL;
-        }
-
-        Deal *deal = this.dealFactory.create();
-
-        deal.command = dir;
-        deal.volume = volume;
-        deal.arrowColor = dir > 0 ? clrBlue : clrRed;
-
-        if (this.name != NULL) {
-            deal.comment = this.name + " " + IntegerToString(deal.command) + " " + DoubleToString(deal.volume, 4);
-        }
-
-        return deal;
-    }
+    virtual Deal *getDeal() = 0;
 
 public:
 
@@ -64,11 +40,20 @@ public:
 
         int id = deal.open();
         if (id) {
-            //this.condition.setLastDealTime(TimeCurrent());
-            this.condition.setDelay();
+            this.condition.setLastDealTime(TimeCurrent());
         }
 
         delete deal;
+    }
+
+    virtual double getBalance()
+    {
+        return this.money.getBalance();
+    }
+
+    string getName()
+    {
+        return this.name;
     }
 };
 

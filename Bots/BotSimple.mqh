@@ -3,19 +3,19 @@
 
 //==================================================
 
-#include "../Base/Bot.mqh"
+#include "BotBasic.mqh"
 #include "../Deals/DealArrow.mqh"
 #include "../Conditions/ConditionStoch.mqh"
 
 //==================================================
 
-class BotSimple: public Bot
+class BotSimple: public BotBasic
 {
 
 public:
 
     BotSimple(const string name = NULL):
-        Bot(new DealArrowFactory(), new ConditionStoch(8), new Money(), "BotSimple " + name)
+        BotBasic(new DealArrowFactory(), new ConditionStoch(8), new Money(), "BotSimple " + name)
     {}
 
     ~BotSimple()
