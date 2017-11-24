@@ -23,6 +23,11 @@ protected:
 
     virtual Deal *getDeal()
     {
+        double volume = this.money.volume();
+        if ( volume <= 0.0 ) {
+            return NULL;
+        }
+
         int dir = this.condition.test();
         if ( !dir ) {
             return NULL;
@@ -31,7 +36,7 @@ protected:
         Deal *deal = this.dealFactory.create();
 
         deal.command = dir;
-        deal.volume = this.money.volume();
+        deal.volume = volume;
         deal.arrowColor = dir > 0 ? clrBlue : clrRed;
 
         if (this.name != NULL) {
