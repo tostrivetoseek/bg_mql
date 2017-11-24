@@ -15,7 +15,7 @@ class BotSimple: public BotBasic
 public:
 
     BotSimple(const string name = NULL):
-        BotBasic(new DealArrowFactory(), new ConditionStoch(8), new Money(), "BotSimple " + name)
+        BotBasic(new DealArrowFactory(), new ConditionStoch(8), new Money(), "BotSimple" + ( name == NULL ? "" : " " + name ))
     {}
 
     ~BotSimple()
