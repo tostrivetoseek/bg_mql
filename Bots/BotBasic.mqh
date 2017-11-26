@@ -14,7 +14,7 @@ protected:
 
     virtual Deal *getDeal()
     {
-        double volume = NormalizeDouble(this.money.getVolume(), 4);
+        double volume = this.money.getVolume();
         if ( volume <= 0.0 ) {
             return NULL;
         }

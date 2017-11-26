@@ -15,7 +15,6 @@ protected:
     bool drawArrow(const string name, const ENUM_OBJECT type, const datetime time, const double price)
     {
         if ( !ObjectCreate(0, name, type, 0, time, price) ) {
-            Print(__FUNCTION__, ": Arrow error ", GetLastError());
             return false;
         }
 
