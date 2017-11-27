@@ -59,9 +59,17 @@ int OnInit()
     ++botsCount;
 
     addGameBot("Rand", new ConditionRand(), game);
+    addGameBot("Rand", new ConditionRand(), game);
     addGameBot("HA", new ConditionHA(), game);
+    addGameBot("HA5", new ConditionHA(PERIOD_M5), game);
     addGameBot("MA(13)", new ConditionMA(13), game);
+    addGameBot("MA(21)", new ConditionMA(13), game);
+    addGameBot("MA(34)", new ConditionMA(13), game);
+    addGameBot("MA(55)", new ConditionMA(13), game);
     addGameBot("Stoch(8)", new ConditionStoch(8), game);
+    addGameBot("Stoch(13)", new ConditionStoch(8), game);
+    addGameBot("Stoch(21)", new ConditionStoch(8), game);
+    addGameBot("Stoch(34)", new ConditionStoch(8), game);
 
     if (I_UseScreen) {
         screen = new Screen(bots);
@@ -74,6 +82,10 @@ int OnInit()
 
 void OnTick()
 {
+    for (int i = 0; i < botsCount; ++i) {
+        bots[i].execute();
+    }
+
     screen.execute();
 }
 
