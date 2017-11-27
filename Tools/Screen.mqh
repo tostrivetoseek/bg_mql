@@ -16,65 +16,10 @@ protected:
     const string name;
 
     int count;
+    double moneyTotal;
 
     CHistogramChart *chartBalances;
     Bot *bots[];
-
-    int init()
-    {
-        bool Accumulative = true;
-
-        int k=100;
-           double arr[10];
-        //--- create chart
-           CHistogramChart chart;
-           if(!chart.CreateBitmapLabel("SampleHistogramChart",10,10,600,250))
-             {
-              Print("Error creating histogram chart: ",GetLastError());
-              return(-1);
-             }
-
-           ObjectSetInteger(0, "SampleHistogramChart", OBJPROP_ANCHOR, ANCHOR_LEFT_LOWER);
-           ObjectSetInteger(0, "SampleHistogramChart", OBJPROP_CORNER, CORNER_LEFT_LOWER);
-
-           if(Accumulative)
-             {
-              chart.Accumulative();
-              chart.VScaleParams(20*k*10,/*-10*k*10*/0,20);
-             }
-           else {
-            chart.VScaleParams(20*k,-10*k,20);
-           }
-           chart.ShowValue(true);
-           chart.ShowScaleTop(false);
-           chart.ShowScaleBottom(false);
-           chart.ShowScaleRight(false);
-           chart.ShowLegend();
-           for(int j=0;j<5;j++)
-             {
-              for(int i=0;i<10;i++)
-                {
-                 k=-k;
-                 if(k>0)
-                    arr[i]=k*(i+10-j);
-                 else
-                    arr[i]=k*(i+10-j)/2;
-                }
-              chart.SeriesAdd(arr,"Item"+IntegerToString(j));
-             }
-        //--- play with values
-           while(!IsStopped())
-             {
-              int i=rand()%5;
-              int j=rand()%10;
-              k=rand()%3000-1000;
-              chart.ValueUpdate(i,j,k);
-              Sleep(200);
-             }
-        //--- finish
-           chart.Destroy();
-           return(0);
-    }
 
     void initChartBalances()
     {
@@ -84,20 +29,59 @@ protected:
         }
 
         this.chartBalances = new CHistogramChart();
-        if ( !this.chartBalances.CreateBitmapLabel(this.name, 10, 10, width, 250) ) {
+        if ( !this.chartBalances.CreateBitmapLabel(this.name, 10, 10, width, 300) ) {
             delete this.chartBalances;
             this.chartBalances = NULL;
         } else {
             ObjectSetInteger(0, this.name, OBJPROP_ANCHOR, ANCHOR_LEFT_LOWER);
             ObjectSetInteger(0, this.name, OBJPROP_CORNER, CORNER_LEFT_LOWER);
 
-            //this.chartBalances.VScaleParams(20*k,-10*k,20);
+            double maxBalance = this.getMaxBalance();
+            double heightScale = this.moneyTotal;
+            if (heightScale > 50*maxBalance) {
+                heightScale = 50*maxBalance;
+            }
+
+            this.chartBalances.VScaleParams(heightScale, 0, 10);
+
             this.chartBalances.ShowValue(true);
             this.chartBalances.ShowScaleTop(false);
             this.chartBalances.ShowScaleBottom(false);
             this.chartBalances.ShowScaleRight(false);
-            this.chartBalances.ShowLegend();
+            this.chartBalances.BarBorder(true);
+            this.chartBalances.ShowLegend(false);
+
+            double v[];
+            ArrayResize(v, this.count);
+            for (int i = 0; i < this.count; ++i) {
+                v[i] = this.bots[i].getBalance();
+            }
+            this.chartBalances.SeriesAdd(v, "Balances", clrGreen);
         }
+    }
+
+    double getMaxBalance()
+    {
+        double max = this.bots[0].getBalance();
+
+        for (int i = 1; i < this.count; ++i) {
+            if (this.bots[i].getBalance() > max) {
+                max = this.bots[i].getBalance();
+            }
+        }
+
+        return max;
+    }
+
+    double getSumBalances()
+    {
+        double sum = 0.0;
+
+        for (int i = 0; i < this.count; ++i) {
+            sum += this.bots[i].getBalance();
+        }
+
+        return sum;
     }
 
 public:
@@ -109,6 +93,8 @@ public:
 
         ArrayResize(this.bots, this.count);
         ArrayCopy(this.bots, bots);
+
+        this.moneyTotal = this.getSumBalances();
 
         this.initChartBalances();
     }
@@ -124,7 +110,12 @@ public:
     void execute()
     {
         if (this.chartBalances != NULL) {
-
+            double v[];
+            ArrayResize(v, this.count);
+            for (int i = 0; i < this.count; ++i) {
+                v[i] = this.bots[i].getBalance();
+            }
+            this.chartBalances.SeriesUpdate(0, v);
         }
     }
 };
