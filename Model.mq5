@@ -17,6 +17,7 @@ input bool              I_UseScreen = true;             // Use screen
 #include "Conditions/ConditionHA.mqh"
 #include "Conditions/ConditionMA.mqh"
 #include "Conditions/ConditionStoch.mqh"
+#include "Conditions/ConditionThree.mqh"
 
 //=========================================================
 
@@ -63,13 +64,23 @@ int OnInit()
     addGameBot("HA", new ConditionHA(), game);
     addGameBot("HA5", new ConditionHA(PERIOD_M5), game);
     addGameBot("MA(13)", new ConditionMA(13), game);
-    addGameBot("MA(21)", new ConditionMA(13), game);
-    addGameBot("MA(34)", new ConditionMA(13), game);
-    addGameBot("MA(55)", new ConditionMA(13), game);
+    addGameBot("MA(21)", new ConditionMA(21), game);
+    addGameBot("MA(34)", new ConditionMA(34), game);
+    addGameBot("MA(55)", new ConditionMA(55), game);
     addGameBot("Stoch(8)", new ConditionStoch(8), game);
-    addGameBot("Stoch(13)", new ConditionStoch(8), game);
-    addGameBot("Stoch(21)", new ConditionStoch(8), game);
-    addGameBot("Stoch(34)", new ConditionStoch(8), game);
+    addGameBot("Stoch(13)", new ConditionStoch(13), game);
+    addGameBot("Stoch(21)", new ConditionStoch(21), game);
+    addGameBot("Stoch(34)", new ConditionStoch(34), game);
+
+    addGameBot(
+        "Three",
+        new ConditionThree(
+            new ConditionHA(PERIOD_M5),
+            new ConditionMA(55),
+            new ConditionStoch(34)
+        ),
+        game
+    );
 
     if (I_UseScreen) {
         screen = new Screen(bots);
