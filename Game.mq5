@@ -2,29 +2,29 @@
 
 //=========================================================
 
-#include "Games/Game.mqh"
+#include "Tools/Screen.mqh"
 
 //=========================================================
 
-Game *game;
+Screen *screen;
 
 int OnInit()
 {
     MathSrand(GetTickCount());
 
-    game = new Game();
+    screen = new Screen();
 
     return INIT_SUCCEEDED;
 }
 
 void OnTick()
 {
-    game.execute();
+
 }
 
 void OnDeinit(const int reason)
 {
-    delete game;
+    delete screen;
 
     Print("Deinit reason #", reason);
 }

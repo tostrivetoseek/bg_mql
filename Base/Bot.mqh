@@ -7,6 +7,8 @@
 #include "Condition.mqh"
 #include "Money.mqh"
 
+#define PBOT Bot*
+
 //==================================================
 
 class Bot
