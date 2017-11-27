@@ -105,9 +105,6 @@ public:
     Screen(const PBOT &bots[], const string name = "Screen"):
         name(name)
     {
-        this.init();
-        return;
-
         this.count = ArraySize(bots);
 
         ArrayResize(this.bots, this.count);
