@@ -67,7 +67,7 @@ protected:
             } else {
                 anchor = ANCHOR_LEFT_LOWER;
             }
-            clr = clrGreen;
+            clr = clrChartreuse;
         } else {
             name = this.drawPrefix + "D";
             if ( time == this.getTime() ) {
@@ -75,7 +75,7 @@ protected:
             } else {
                 anchor = ANCHOR_LEFT_UPPER;
             }
-            clr = clrRed;
+            clr = clrTomato;
         }
 
         if ( !ObjectCreate(0, name, OBJ_TEXT, 0, time, price) ) {
@@ -84,7 +84,7 @@ protected:
 
         ObjectSetString(0, name, OBJPROP_TEXT, text);
         ObjectSetString(0, name, OBJPROP_FONT, "Arial");
-        ObjectSetInteger(0, name, OBJPROP_FONTSIZE, 10);
+        ObjectSetInteger(0, name, OBJPROP_FONTSIZE, 12);
         ObjectSetInteger(0, name, OBJPROP_ANCHOR, anchor);
         ObjectSetInteger(0, name, OBJPROP_COLOR, clr);
         ObjectSetInteger(0, name, OBJPROP_BACK, false);
@@ -426,7 +426,7 @@ public:
         }
 
         this.currentRound.draw();
-        this.nextRound.draw(5*this.periodSeconds);
+        this.nextRound.draw(7*this.periodSeconds);
     }
 };
 

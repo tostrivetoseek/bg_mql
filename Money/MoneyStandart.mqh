@@ -10,6 +10,17 @@
 class MoneyStandart: public Money
 {
 
+public:
+
+    virtual double getVolume()
+    {
+        if ( 1.0 > this.getBalance() ) {
+            return 0.0;
+        }
+
+        return 1.0;
+    }
+
 };
 
 #endif
