@@ -3,7 +3,7 @@
 
 //==================================================
 
-#include <Canvas\Charts\HistogramChart.mqh>
+#include "Histogram.mqh"
 #include "../Base/Bot.mqh"
 
 //==================================================
@@ -18,7 +18,7 @@ protected:
     int count;
     double moneyTotal;
 
-    CHistogramChart *chartBalances;
+    Histogram *chartBalances;
     Bot *bots[];
 
     void initChartBalances()
@@ -28,7 +28,7 @@ protected:
             width = 900;
         }
 
-        this.chartBalances = new CHistogramChart();
+        this.chartBalances = new Histogram();
         if ( !this.chartBalances.CreateBitmapLabel(this.name, 10, 10, width, 300) ) {
             delete this.chartBalances;
             this.chartBalances = NULL;
@@ -52,11 +52,15 @@ protected:
             this.chartBalances.ShowLegend(false);
 
             double v[];
+            string t[];
             ArrayResize(v, this.count);
+            ArrayResize(t, this.count);
             for (int i = 0; i < this.count; ++i) {
                 v[i] = this.bots[i].getBalance();
+                t[i] = this.bots[i].getName();
             }
-            this.chartBalances.SeriesAdd(v, "Balances", clrGreen);
+            this.chartBalances.SeriesAdd(v, "Balances", clrMediumSeaGreen);
+            this.chartBalances.SeriesAddTitles(t);
         }
     }
 
